@@ -22,7 +22,7 @@
                 "data": [
                     "100,000"
                 ],
-                "type": "income",
+                "type": "investment amount",
                 "revoked": false,
                 "participants": [
                     "O=ABN AMRO Bank, L=Amsterdam, C=NL",
