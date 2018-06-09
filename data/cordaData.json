@@ -1,0 +1,62 @@
+[
+    {
+        "claims": [
+            {
+                "initParty": "O=ABN AMRO Bank, L=Amsterdam, C=NL",
+                "counterParty": "O=ABN MeesPierson, L=Rotterdam, C=NL",
+                "counterPartyName": null,
+                "data": [
+                    "Piet"
+                ],
+                "type": "name",
+                "revoked": false,
+                "participants": [
+                    "O=ABN AMRO Bank, L=Amsterdam, C=NL",
+                    "O=ABN MeesPierson, L=Rotterdam, C=NL"
+                ]
+            },
+            {
+                "initParty": "O=ABN AMRO Bank, L=Amsterdam, C=NL",
+                "counterParty": "O=ABN MeesPierson, L=Rotterdam, C=NL",
+                "counterPartyName": null,
+                "data": [
+                    "100,000"
+                ],
+                "type": "income",
+                "revoked": false,
+                "participants": [
+                    "O=ABN AMRO Bank, L=Amsterdam, C=NL",
+                    "O=ABN MeesPierson, L=Rotterdam, C=NL"
+                ]
+            },
+            {
+                "initParty": "O=ABN AMRO Bank, L=Amsterdam, C=NL",
+                "counterParty": "O=ABN MeesPierson, L=Rotterdam, C=NL",
+                "counterPartyName": null,
+                "data": [
+                    "060012345"
+                ],
+                "type": "contact",
+                "revoked": false,
+                "participants": [
+                    "O=ABN AMRO Bank, L=Amsterdam, C=NL",
+                    "O=ABN MeesPierson, L=Rotterdam, C=NL"
+                ]
+            },
+            {
+                "initParty": "O=ABN AMRO Bank, L=Amsterdam, C=NL",
+                "counterParty": "O=ABN MeesPierson, L=Rotterdam, C=NL",
+                "counterPartyName": null,
+                "data": [
+                    "NL10ABNA0123456789"
+                ],
+                "type": "IBAN",
+                "revoked": false,
+                "participants": [
+                    "O=ABN AMRO Bank, L=Amsterdam, C=NL",
+                    "O=ABN MeesPierson, L=Rotterdam, C=NL"
+                ]
+            }
+        ]
+    }
+]

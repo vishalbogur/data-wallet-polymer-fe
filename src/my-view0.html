@@ -1,0 +1,219 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<dom-module id="my-view0">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+
+            .avatar-container {
+                margin: 0 auto;
+                height: 180px;
+                width: 250px;
+            }
+
+            paper-input {
+                width: 100%;
+                margin-left: 22%;
+                max-width: 300px;
+                --paper-input-container-focus-color: #131210;
+                --paper-input-container-label: {
+                    margin-left: 8px;
+                }
+                ;
+                --paper-input-container-input: {
+                    margin-left: 8px;
+                }
+            }
+
+            paper-button {
+                margin-top: 48px;
+                margin-bottom: 24px;
+                width: 54%;
+                margin-left: 22%;
+                text-transform: none;
+                background-color: #ffd200;
+                color: black;
+            }
+
+            .header {
+                width: 10%;
+                margin: 0 auto;
+            }
+
+            .loginForm {
+                width: 50%;
+                margin: 0 auto;
+            }
+
+            h3 {
+                color: #009185;
+                margin: unset;
+            }
+
+
+            .footer {
+                bottom: 0;
+                margin-left: 45%;
+                margin-top: 200px;
+                color: white;
+            }
+
+            @media only screen and (max-width: 600px) {
+                paper-input {
+                    width: 100%;
+                    margin-left: 16px;
+                    max-width: 300px;
+                }
+
+                .card {
+                    margin: unset;
+                    height: -webkit-fill-available;
+                }
+
+                :host {
+                    padding: unset;
+                }
+
+                .header {
+                    width: 25%;
+                    margin: 0 auto;
+                }
+
+                .loginForm {
+                    width: unset;
+                    margin: 0 auto;
+                }
+
+                paper-button {
+                    margin-top: 32px;
+                    margin-bottom: 24px;
+                    margin-left: 20px;
+                    width: 88%;
+                    text-transform: none;
+                    background-color: #ffd200;
+                    color: black;
+                }
+
+                .footer {
+                    bottom: 0;
+                    margin-left: 110px;
+                    margin-top: 60px;
+                }
+            }
+
+            .welcome {
+                margin-top: unset;
+                font-size: 18px;
+                color: #009185;
+            }
+
+            b {
+                color: #c53f3f;
+                font-size: 24px;
+            }
+
+            @keyframes abnLogo {
+                from {
+                    width: 0px;
+                    height: 0px;
+                }
+                to {
+                    height: 180px;
+                    width: 250px;
+                }
+            }
+
+            .image {
+                animation: abnLogo 2s;
+            }
+
+        </style>
+
+        <div class="card">
+            <div class="container">
+            <div class="avatar-container">
+                <div class="image"></div>
+            </div>
+            <div class="header">
+                <p class="welcome">Welcome</p>
+            </div>
+            <div class="loginForm">
+                <paper-input label="username" id="usernameInput" value="{{username}}">
+                    <iron-icon icon="mail" slot="prefix"></iron-icon>
+                </paper-input>
+                <paper-input label="password" id="passwordInput" type="password" value="{{password}}">
+                    <iron-icon icon="lock" slot="prefix"></iron-icon>
+                </paper-input>
+                <paper-button raised on-tap="_performLogin">Login</paper-button>
+            </div>
+            <div class="footer">
+                <p>Powered by
+                    <b>CGI</b>
+                </p>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        class MyView0 extends Polymer.Element {
+            static get is() { return 'my-view0'; }
+
+            static get properties() {
+                return {
+                    loggedIn: {
+                        type: Boolean,
+                        notify: true
+                    },
+                    username: {
+                        type: String,
+                        notify: true
+                    },
+                    password: {
+                        type: String
+                    },
+                    page: {
+                        type: String,
+                        notify: true
+                    }
+                };
+            }
+
+            _performLogin() {
+                if ('admin' == this.username && 'admin' == this.password) {
+                    this.loggedIn = true;
+                    localStorage.setItem('loggedIn', this.loggedIn);
+                    localStorage.setItem('username', this.username);
+                    this._clearInputs();
+                    this.page = 'view1';
+                } else {
+                    return;
+                }
+            }
+
+            _clearInputs() {
+                this.username = '';
+                this.password = '';
+            }
+        }
+
+        window.customElements.define(MyView0.is, MyView0);
+    </script>
+</dom-module>

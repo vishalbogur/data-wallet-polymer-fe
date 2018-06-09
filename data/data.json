@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Jane Doe",
+        "type":"contact",
+        "data": [
+            "061111111"
+        ]
+    },
+    {
+        "name": "Jane Doe",
+        "type":"email",
+        "data": [
+            "thisisamail@abnamro.com"
+        ]
+    },
+    {
+        "name": "Jane Doe",
+        "type":"contact",
+        "data": [
+            "061111111"
+        ]
+    }
+]

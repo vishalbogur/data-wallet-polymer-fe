@@ -1,0 +1,250 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+
+<dom-module id="my-view1">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+      iron-list {
+        --iron-list-items-container: {
+          margin: auto;
+        }
+        ;
+        height: -webkit-fill-available;
+      }
+
+      .item {
+        @apply --layout-horizontal;
+        padding: 20px;
+        background: linear-gradient(#e8f1f1, #fff);
+        cursor: pointer;
+        margin-bottom: 10px;
+        box-shadow: 1px 1px 4px #9c9797;
+      }
+
+      .primary {
+        font-size: 14px;
+        color: #19b9acd4;
+        animation: customerName;
+        animation-duration: 1s;
+      }
+
+      .item:focus {
+        outline: none;
+      }
+
+      .shortText,
+      .longText {
+        font-size: 12px;
+      }
+
+      .longText {
+        color: gray;
+        display: none;
+      }
+
+      .item:hover .shortText::after {
+        content: ' [+]';
+        color: gray;
+      }
+
+      .item.expanded:hover .shortText::after {
+        content: '';
+      }
+
+      .item.expanded .longText {
+        display: grid;
+      }
+
+      .item.expanded:hover .longText::after {
+        /* content: ' [–]'; */
+      }
+
+      .item.expanded {
+        padding-bottom: 2px
+      }
+
+      .avatar {
+        height: 50px;
+        width: 50px;
+        margin-right: 8px;
+        border-radius: 2px;
+        box-sizing: border-box;
+        background-color: #fff;
+      }
+
+      .typeName {
+        text-transform: capitalize;
+        font-weight: bold;
+        padding: 4px;
+      }
+
+      /*      #list1 {
+        height: auto;
+      } */
+
+      @keyframes customerName {
+        from {
+          margin-left: 84%;
+        }
+        to {
+          margin-left: 0%;
+        }
+      }
+
+      .item1 {
+        grid-area: main;
+      }
+
+      .item2 {
+        grid-area: right;
+      }
+
+      .longText {
+        grid-template-columns: auto auto;
+        padding: 8px;
+        margin-top: 16px;
+      }
+
+      .grid-item1,
+      .grid-item2 {
+        border-right: 1px solid white;
+        background-color: #0a7b71;
+        color: white;
+        padding: 4px;
+      }
+
+      .grid-item2 {
+        border: none;
+      }
+
+      .grid-item3,
+      .grid-item4 {
+        border-right: 1px solid white;
+        margin-top: 4px;
+        margin-bottom: 2px;
+      }
+
+      .grid-item4 {
+        border: none;
+      }
+
+      .grid-item3{
+        grid-column-start: 0;
+        grid-column-end: 1;
+      }
+
+      .pad {
+        width: 100%;
+        max-width: 600px;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .longText {
+          padding: 0px;
+        }
+      }
+    </style>
+    <iron-ajax url="data/cordaData.json" last-response="{{data}}" auto></iron-ajax>
+    <div class="card">
+      <iron-list id="list1" items="[[data]]" as="item" selection-enabled multi-selection>
+        <template>
+          <div>
+            <div class$="[[getClassForItem(item, selected)]]" tabindex$="[[tabIndex]]">
+              <iron-image class="avatar" sizing="contain" src="../images/person.png"></iron-image>
+              <div class="pad">
+                <div class="primary">Thisis Anemail</div>
+                <div class="shortText">space for brief description if needed</div>
+                <div class="longText">
+                  <div class="grid-item1">Personal</div>
+                  <div class="grid-item2">Financial</div>
+
+                  <dom-repeat items="[[item.claims]]" as="data">
+                    <template>
+                      <dom-if if$="[[_isPersonalData(data.type)]]">
+                        <template>
+                            <div class="grid-item3">
+                                <span class="typeName">[[data.type]]</span>: [[data.data]]
+                              </div>
+                        </template>
+                      </dom-if>
+                      <dom-if if$="[[!_isPersonalData(data.type)]]">
+                        <template>
+                        <div class="grid-item4">
+                          <span class="typeName">[[data.type]]</span>: [[data.data]]
+                        </div>
+                      </template>
+                      </dom-if>
+                    </template>
+                  </dom-repeat>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </iron-list>
+      <!--       <iron-list id="list" items="[[items]]" as="item" selection-enabled multi-selection>
+        <template>
+          <div>
+            <div class$="[[getClassForItem(item, selected)]]" tabindex$="[[tabIndex]]">
+              <iron-image class="avatar" sizing="contain" src="../images/person.png"></iron-image>
+              <div class="pad">
+                <div class="primary">[[item.name]]</div>
+                <div class="shortText">space for brief description if needed</div>
+                <div class="longText">
+                  <div class="typeName">[[item.type]]:
+                    <dom-repeat items="[[item.data]]" as="data">
+                      <template>
+                        <span>[[data]]</span>
+                      </template>
+                    </dom-repeat>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </iron-list> -->
+    </div>
+  </template>
+
+  <script>
+    class MyView1 extends Polymer.Element {
+      static get is() { return 'my-view1'; }
+
+      getClassForItem(item, selected) {
+        return selected ? 'item expanded' : 'item';
+      }
+
+      _isPersonalData(value) {
+        console.log('VAL: '+value);
+        let flag = false;
+        if(value == 'name' || value == 'contact' || value == 'email'){
+          flag =  true;
+        }else{
+          flag =  false;
+        }
+        console.log('FLAG: '+flag);
+        return flag;
+      }
+    }
+
+    window.customElements.define(MyView1.is, MyView1);
+  </script>
+</dom-module>
