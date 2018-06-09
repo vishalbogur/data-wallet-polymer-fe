@@ -161,7 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
     </style>
-    <iron-ajax url="data/cordaData.json" last-response="{{data}}" auto></iron-ajax>
+    <iron-ajax id="cordaAjax" url="data/cordaData.json" last-response="{{data}}" auto></iron-ajax>
     <div class="card">
       <iron-list id="list1" items="[[data]]" as="item" selection-enabled multi-selection>
         <template>
@@ -174,7 +174,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="longText">
                   <div class="grid-item1">Personal</div>
                   <div class="grid-item2">Financial</div>
-
                   <dom-repeat items="[[item.claims]]" as="data">
                     <template>
                       <dom-if if$="[[_isPersonalData(data.type)]]">
