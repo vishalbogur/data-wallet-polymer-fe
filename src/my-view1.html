@@ -161,20 +161,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
     </style>
-    <iron-ajax id="cordaAjax" url="data/cordaData.json" last-response="{{data}}" auto></iron-ajax>
+    <iron-ajax id="cordaAjax" url="http://23.97.217.20:10004/api/v1/claims" on-response="_setResponseData" auto></iron-ajax>
+    <iron-ajax id="cordaAjax" url="data/cordaData.json" on-response="localClaims" auto></iron-ajax>
     <div class="card">
-      <iron-list id="list1" items="[[data]]" as="item" selection-enabled multi-selection>
+      <iron-list id="list1" items="[[claims]]" as="item" selection-enabled multi-selection>
         <template>
           <div>
             <div class$="[[getClassForItem(item, selected)]]" tabindex$="[[tabIndex]]">
               <iron-image class="avatar" sizing="contain" src="../images/person.png"></iron-image>
               <div class="pad">
-                <div class="primary">[[item.name]]</div>
+                <div class="primary">Henk</div>
                 <div class="shortText">private banking client</div>
                 <div class="longText">
                   <div class="grid-item1">Personal</div>
                   <div class="grid-item2">Financial</div>
-                  <dom-repeat items="[[item.claims]]" as="data">
+                  <dom-repeat items="[[item]]" as="data">
                     <template>
                       <dom-if if$="[[_isPersonalData(data.type)]]">
                         <template>
@@ -205,6 +206,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     class MyView1 extends Polymer.Element {
       static get is() { return 'my-view1'; }
 
+      static get properties(){
+        return {
+          claims: {
+            type: Array,
+            value: []
+          }
+        };
+      }
+
       getClassForItem(item, selected) {
         return selected ? 'item expanded' : 'item';
       }
@@ -212,13 +222,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _isPersonalData(value) {
         console.log('VAL: '+value);
         let flag = false;
-        if(value == 'name' || value == 'contact' || value == 'email'){
+        if(value == 'name' || value == 'contact' || value == 'email' || value== 'test'){
           flag =  true;
         }else{
           flag =  false;
         }
         console.log('FLAG: '+flag);
         return flag;
+      }
+
+      _setResponseData(response){
+        this.push("claims",response.detail.__data.response.claims);
       }
     }
 
