@@ -170,7 +170,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class$="[[getClassForItem(item, selected)]]" tabindex$="[[tabIndex]]">
               <iron-image class="avatar" sizing="contain" src="../images/person.png"></iron-image>
               <div class="pad">
-                <div class="primary">Henk</div>
+                <div class="primary">Sobhan</div>
                 <div class="shortText">private banking client</div>
                 <div class="longText">
                   <div class="grid-item1">Personal</div>
@@ -220,14 +220,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       _isPersonalData(value) {
-        console.log('VAL: '+value);
         let flag = false;
         if(value == 'name' || value == 'contact' || value == 'email' || value== 'test'){
           flag =  true;
         }else{
           flag =  false;
         }
-        console.log('FLAG: '+flag);
         return flag;
       }
 
