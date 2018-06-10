@@ -169,7 +169,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class$="[[getClassForItem(item, selected)]]" tabindex$="[[tabIndex]]">
               <iron-image class="avatar" sizing="contain" src="../images/person.png"></iron-image>
               <div class="pad">
-                <div class="primary">Piet Sampras</div>
+                <div class="primary">[[item.name]]</div>
                 <div class="shortText">private banking client</div>
                 <div class="longText">
                   <div class="grid-item1">Personal</div>
@@ -198,28 +198,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>
         </template>
       </iron-list>
-      <!--       <iron-list id="list" items="[[items]]" as="item" selection-enabled multi-selection>
-        <template>
-          <div>
-            <div class$="[[getClassForItem(item, selected)]]" tabindex$="[[tabIndex]]">
-              <iron-image class="avatar" sizing="contain" src="../images/person.png"></iron-image>
-              <div class="pad">
-                <div class="primary">[[item.name]]</div>
-                <div class="shortText">space for brief description if needed</div>
-                <div class="longText">
-                  <div class="typeName">[[item.type]]:
-                    <dom-repeat items="[[item.data]]" as="data">
-                      <template>
-                        <span>[[data]]</span>
-                      </template>
-                    </dom-repeat>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
-      </iron-list> -->
     </div>
   </template>
 
