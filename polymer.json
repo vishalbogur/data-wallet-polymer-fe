@@ -3,13 +3,13 @@
   "shell": "src/my-app.html",
   "fragments": [
     "src/my-view1.html",
-    "src/my-view2.html",
-    "src/my-view3.html",
+    "src/my-view0.html",
     "src/my-view404.html"
   ],
   "sources": [
     "images/**/*",
-    "src/**/*"
+    "src/**/*",
+    "data/**/*"
   ],
   "extraDependencies": [
     "bower_components/webcomponentsjs/*.js",
